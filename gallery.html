@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Gallery — Lula Long Art">
+<meta property="og:description" content="Full portfolio — coloured pencil and pastel portraits by Lyndsey, Guernsey">
+<meta property="og:url" content="https://lulalongart.com/gallery.html">
+<meta property="og:type" content="website">
+<meta name="description" content="Full gallery of coloured pencil and pastel portraits by Lula Long Art, Guernsey">
+<title>Gallery &mdash; Lula Long Art</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   EDIT YOUR ARTWORK HERE — see the GALLERY_WORKS array below
+   in the <script> section at the bottom of this file.
+   ============================================================ */
+
+:root {
+  --black: #0a0807;
+  --deep: #110e0c;
+  --charcoal: #1c1714;
+  --warm-mid: #2e2723;
+  --ash: #4a3f38;
+  --muted: #7a6a60;
+  --pale: #c4b0a2;
+  --cream: #e8ddd4;
+  --gold: #c49a5a;
+  --gold-light: #d4aa6a;
+  --white: #f2ece6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Noise texture overlay — matches homepage */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.45;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 48px;
+  background: var(--black);
+  border-bottom: 1px solid var(--warm-mid);
+  transition: box-shadow 0.4s;
+}
+nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.8); }
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav-logo img {
+  width: 44px; height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(196,154,90,0.45));
+  transition: filter 0.3s;
+}
+.nav-logo:hover img { filter: drop-shadow(0 0 12px rgba(196,154,90,0.7)); }
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+.nav-logo-name {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.nav-logo-sub {
+  font-size: 0.92rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.86rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: color 0.3s;
+  position: relative;
+  cursor: pointer;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--gold); }
+.nav-links a.active::after { width: 100%; }
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.nav-burger span {
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--pale);
+  transition: all 0.3s;
+}
+.nav-open .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+.nav-open .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  margin-top: 73px;
+  padding: 72px 56px 48px;
+  background: var(--deep);
+  border-bottom: 1px solid var(--warm-mid);
+}
+.gold-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.gold-rule::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--gold);
+}
+.gold-rule span {
+  font-size: 1rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.page-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+.page-header h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.page-header p {
+  font-size: 1rem;
+  color: var(--pale);
+  max-width: 560px;
+  line-height: 1.9;
+}
+
+/* ── FILTERS ── */
+.filter-bar {
+  padding: 28px 56px;
+  background: var(--black);
+  border-bottom: 1px solid var(--warm-mid);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.filter-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 6px;
+}
+.filter-btn {
+  background: none;
+  border: 1px solid var(--warm-mid);
+  color: var(--pale);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+.filter-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.filter-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+}
+
+/* ── GALLERY GRID ── */
+.gallery-section {
+  padding: 56px 56px 100px;
+  background: var(--deep);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Each card */
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--charcoal);
+  border: 1px solid var(--warm-mid);
+  transition: border-color 0.35s, transform 0.35s;
+}
+.gallery-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+/* Image container — uses padding trick for consistent aspect */
+.gallery-card-img {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* default square; JS overrides per piece */
+  overflow: hidden;
+}
+.gallery-card-img-inner {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.gallery-card:hover .gallery-card-img-inner {
+  transform: scale(1.03);
+}
+
+/* Label overlay */
+.gallery-card-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 48px 18px 18px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+  pointer-events: none;
+}
+.gallery-card-label p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.gallery-card-label span {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Info panel below image */
+.gallery-card-info {
+  padding: 16px 18px 20px;
+  border-top: 1px solid var(--warm-mid);
+}
+.gallery-card-info .narrative {
+  font-size: 0.92rem;
+  color: var(--pale);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.gallery-card-info .meta {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+.gallery-card-info .meta span {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Empty state */
+.gallery-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 0;
+  color: var(--muted);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── BACK LINK ── */
+.back-bar {
+  padding: 32px 56px;
+  background: var(--black);
+  border-top: 1px solid var(--warm-mid);
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.84rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pale);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.back-link::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.back-link:hover { color: var(--gold); }
+.back-link:hover::before { width: 36px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep);
+  padding: 36px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-top: 1px solid var(--warm-mid);
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.footer-logo img {
+  width: 32px; height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(196,154,90,0.35));
+}
+.footer-logo-name {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pale);
+}
+.footer-copy {
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  color: var(--ash);
+}
+.footer-social { display: flex; gap: 22px; }
+.footer-social a {
+  font-size: 0.84rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+.footer-social a:hover { color: var(--gold); }
+
+/* ── LIGHTBOX ── */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.95);
+  cursor: zoom-out;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img {
+  max-width: 88vw;
+  max-height: 82vh;
+  object-fit: contain;
+  box-shadow: 0 0 80px rgba(0,0,0,0.8);
+}
+.lightbox-caption {
+  text-align: center;
+}
+.lightbox-caption p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.lightbox-caption span {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px; right: 28px;
+  color: var(--pale);
+  font-size: 2rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  background: none;
+  border: none;
+  font-family: 'Jost', sans-serif;
+  transition: color 0.2s;
+}
+.lightbox-close:hover { color: var(--gold); }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid var(--warm-mid);
+  color: var(--pale);
+  font-size: 1.4rem;
+  font-weight: 300;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  font-family: 'Jost', sans-serif;
+  line-height: 1;
+}
+.lightbox-nav:hover { border-color: var(--gold); color: var(--gold); }
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+
+/* ── FADE IN ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.gallery-card {
+  opacity: 0;
+  animation: fadeUp 0.55s ease forwards;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 14px 24px; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--black);
+    border-bottom: 1px solid var(--warm-mid);
+    padding: 8px 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li a { display: block; padding: 12px 24px; border-bottom: 1px solid var(--warm-mid); font-size: 0.92rem; }
+  .nav-burger { display: flex; }
+  .page-header { padding: 56px 24px 36px; }
+  .filter-bar { padding: 20px 24px; }
+  .gallery-section { padding: 36px 24px 72px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .back-bar { padding: 24px; }
+  footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .lightbox-nav { display: none; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="index.html">
+    <img src="data:image/png;base64,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" alt="Lula Long Art">
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Lula Long Art</span>
+      <span class="nav-logo-sub">Guernsey</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#portfolio">Selected Work</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="gold-rule"><span>Full Portfolio</span></div>
+  <h1>The <em>Gallery</em></h1>
+  <p>Coloured pencil and soft pastel portraits — people, pets, and the musicians who move us.</p>
+</div>
+
+<!-- Filter Bar — categories come from your data below -->
+<div class="filter-bar" id="filter-bar">
+  <span class="filter-label">Filter</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <!-- Additional filter buttons are generated from your data -->
+</div>
+
+<!-- Gallery Grid — populated from GALLERY_WORKS below -->
+<section class="gallery-section">
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<div class="back-bar">
+  <a class="back-link" href="index.html">&larr; Back to homepage</a>
+</div>
+
+<footer>
+  <a class="footer-logo" href="index.html">
+    <img src="data:image/png;base64,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" alt="Lula Long Art">
+    <span class="footer-logo-name">Lula Long Art</span>
+  </a>
+  <p class="footer-copy">&copy; 2026 Lula Long Art &middot; Guernsey, Channel Islands</p>
+  <div class="footer-social">
+    <a id="footer-instagram">Instagram</a>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#8592;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption">
+    <p id="lightbox-title"></p>
+    <span id="lightbox-medium"></span>
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next">&#8594;</button>
+</div>
+
+<script>
+/* ============================================================
+   GALLERY WORKS — EDIT THIS ARRAY TO MAINTAIN YOUR GALLERY
+   ============================================================
+   Each artwork is one object. Fields:
+     src       — path to image file, e.g. "images/mypiece.jpg"
+     title     — artwork title
+     medium    — materials, e.g. "Coloured pencil · A3 Fabriano Black Black"
+     year      — year created
+     category  — used for filter buttons; use consistent names like
+                 "Commission", "Personal Work", "Fan Art", "Exhibition"
+     narrative — optional sentence about the piece (or "" to leave blank)
+     aspect    — optional: "portrait" (tall), "landscape" (wide),
+                 or omit for square. Controls the card shape.
+
+   TO ADD A PIECE:    paste a new { } block into the array
+   TO REMOVE A PIECE: delete its { } block
+   TO EDIT:           change the text inside the quotes
+   ============================================================ */
+
+var GALLERY_WORKS = [
+  {
+    src: "http://lulalongart.com/wp-content/uploads/2026/04/Resonance.jpg",
+    title: "Resonance",
+    medium: "Coloured pencil · Fabriano Black Black",
+    year: "2025",
+    category: "Exhibition",
+    narrative: "Exhibited at the Guernsey Arts Open 2025 at the George Crossan Gallery.",
+    aspect: "portrait"
+  },
+  {
+    src: "http://lulalongart.com/wp-content/uploads/2026/04/Remnant.jpg",
+    title: "Remnant",
+    medium: "Coloured pencil · Fabriano Black Black",
+    year: "2025",
+    category: "Exhibition",
+    narrative: "Winner of the Lee Baglin Memorial Trophy for General Excellence in Drawing, Guernsey Eisteddfod 2025.",
+    aspect: "portrait"
+  },
+  {
+    src: "http://lulalongart.com/wp-content/uploads/2026/04/Margot.jpg",
+    title: "Margot",
+    medium: "Coloured pencil · Pastelmat",
+    year: "2025",
+    category: "Personal Work",
+    narrative: "",
+    aspect: "portrait"
+  },
+  {
+    src: "http://lulalongart.com/wp-content/uploads/2026/04/JoeTalbot.jpg",
+    title: "Joe Talbot",
+    medium: "Pan pastel & Luminance · A3 Pastelmat",
+    year: "2025",
+    category: "Fan Art",
+    narrative: "IDLES at a Guernsey festival — festival commission capturing the energy of that performance.",
+    aspect: "portrait"
+  },
+  {
+    src: "http://lulalongart.com/wp-content/uploads/2026/04/Dad.jpg",
+    title: "Dad",
+    medium: "Coloured pencil · Fabriano Black Black",
+    year: "2025",
+    category: "Personal Work",
+    narrative: "Personal work. Eisteddfod 2025.",
+    aspect: "portrait"
+  },
+  {
+    src: "http://lulalongart.com/wp-content/uploads/2026/04/Toby.jpg",
+    title: "Toby",
+    medium: "Coloured pencil · Pastelmat",
+    year: "2024",
+    category: "Commission",
+    narrative: "Pet portrait commission.",
+    aspect: "portrait"
+  },
+  {
+    src: "http://lulalongart.com/wp-content/uploads/2026/04/MilliePoppyBear.jpg",
+    title: "Millie, Poppy & Bear",
+    medium: "Coloured pencil · Pastelmat",
+    year: "2024",
+    category: "Commission",
+    narrative: "Triple pet portrait commission — three dogs, one cherished in memory.",
+    aspect: "landscape"
+  },
+  {
+    src: "http://lulalongart.com/wp-content/uploads/2026/04/Dimebag.jpg",
+    title: "Dimebag Darrell",
+    medium: "Coloured pencil · Fabriano Black Black",
+    year: "2024",
+    category: "Fan Art",
+    narrative: "Pantera — fan art commission.",
+    aspect: "portrait"
+  }
+  /* ADD NEW PIECES ABOVE THIS LINE — don't forget the comma after the } above */
+];
+
+/* ============================================================
+   EVERYTHING BELOW THIS LINE IS LAYOUT CODE — NO NEED TO EDIT
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Nav scroll shadow
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('main-nav');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile burger
+  var burger = document.getElementById('nav-burger');
+  if (burger) {
+    burger.addEventListener('click', function() {
+      document.getElementById('main-nav').classList.toggle('nav-open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+  }
+
+  // Footer Instagram
+  var fig = document.getElementById('footer-instagram');
+  if (fig) fig.addEventListener('click', function() { window.open('https://instagram.com/lulalongart','_blank'); });
+
+  // ── BUILD FILTER BUTTONS from unique categories ──
+  var categories = [];
+  GALLERY_WORKS.forEach(function(w) {
+    if (w.category && categories.indexOf(w.category) === -1) categories.push(w.category);
+  });
+  var filterBar = document.getElementById('filter-bar');
+  categories.forEach(function(cat) {
+    var btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.setAttribute('data-filter', cat);
+    btn.textContent = cat;
+    filterBar.appendChild(btn);
+  });
+
+  // ── BUILD GALLERY CARDS ──
+  var grid = document.getElementById('gallery-grid');
+  var currentFilter = 'all';
+  var currentLightboxIdx = 0;
+  var visibleWorks = [];
+
+  function buildCards(filter) {
+    grid.innerHTML = '';
+    visibleWorks = GALLERY_WORKS.filter(function(w) {
+      return filter === 'all' || w.category === filter;
+    });
+
+    if (visibleWorks.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'gallery-empty';
+      empty.textContent = 'No works in this category yet.';
+      grid.appendChild(empty);
+      return;
+    }
+
+    visibleWorks.forEach(function(work, idx) {
+      var card = document.createElement('div');
+      card.className = 'gallery-card';
+      card.style.animationDelay = (idx * 0.06) + 's';
+
+      // Aspect ratio
+      var paddingBottom = '100%';
+      if (work.aspect === 'portrait') paddingBottom = '125%';
+      if (work.aspect === 'landscape') paddingBottom = '72%';
+
+      var narrativeHTML = work.narrative
+        ? '<p class="narrative">' + work.narrative + '</p>'
+        : '';
+
+      card.innerHTML =
+        '<div class="gallery-card-img" style="padding-bottom:' + paddingBottom + '">' +
+          '<div class="gallery-card-img-inner" style="background-image:url(\'' + work.src + '\')"></div>' +
+          '<div class="gallery-card-label">' +
+            '<p>' + work.title + '</p>' +
+            '<span>' + work.category + (work.year ? ' &middot; ' + work.year : '') + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="gallery-card-info">' +
+          narrativeHTML +
+          '<div class="meta">' +
+            '<span>' + work.medium + '</span>' +
+          '</div>' +
+        '</div>';
+
+      card.addEventListener('click', function() { openLightbox(idx); });
+      grid.appendChild(card);
+    });
+  }
+
+  // ── FILTER CLICK HANDLER ──
+  filterBar.addEventListener('click', function(e) {
+    if (!e.target.classList.contains('filter-btn')) return;
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    e.target.classList.add('active');
+    currentFilter = e.target.getAttribute('data-filter');
+    buildCards(currentFilter);
+  });
+
+  // Initial build
+  buildCards('all');
+
+  // ── LIGHTBOX ──
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxTitle = document.getElementById('lightbox-title');
+  var lightboxMedium = document.getElementById('lightbox-medium');
+  var lightboxClose = document.getElementById('lightbox-close');
+  var lightboxPrev = document.getElementById('lightbox-prev');
+  var lightboxNext = document.getElementById('lightbox-next');
+
+  function openLightbox(idx) {
+    currentLightboxIdx = idx;
+    var work = visibleWorks[idx];
+    lightboxImg.src = work.src;
+    lightboxImg.alt = work.title;
+    lightboxTitle.textContent = work.title;
+    lightboxMedium.textContent = work.medium + (work.year ? ' · ' + work.year : '');
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function prevImage() {
+    currentLightboxIdx = (currentLightboxIdx - 1 + visibleWorks.length) % visibleWorks.length;
+    openLightbox(currentLightboxIdx);
+  }
+
+  function nextImage() {
+    currentLightboxIdx = (currentLightboxIdx + 1) % visibleWorks.length;
+    openLightbox(currentLightboxIdx);
+  }
+
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', function(e) { e.stopPropagation(); prevImage(); });
+  if (lightboxNext) lightboxNext.addEventListener('click', function(e) { e.stopPropagation(); nextImage(); });
+  if (lightbox) lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  });
+
+});
+</script>
+</body>
+</html>
