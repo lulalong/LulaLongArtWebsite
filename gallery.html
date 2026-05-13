@@ -903,14 +903,16 @@ document.addEventListener('DOMContentLoaded', function() {
     var total = images.length;
     var loaded = 0;
 
-    function onImageSettled() {
-      loaded++;
-      if (loaded === total) {
-        var l = document.getElementById('gallery-loader');
-        if (l) l.remove();
-        grid.classList.add('loaded');
-      }
-    }
+function onImageSettled() {
+  loaded++;
+  if (loaded === total) {
+    setTimeout(function() {
+      var l = document.getElementById('gallery-loader');
+      if (l) l.remove();
+      grid.classList.add('loaded');
+    }, 80);
+  }
+}
 
     if (total === 0) {
       loader.remove();
