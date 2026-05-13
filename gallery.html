@@ -238,6 +238,15 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.8); }
 .gallery-grid {
   columns: 3;
   column-gap: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gallery-grid.loaded {
+  opacity: 1;
+}
+.gallery-card-img {
+  min-height: 200px;
+  background: var(--charcoal);
 }
 
 /* Each card */
@@ -850,6 +859,25 @@ document.addEventListener('DOMContentLoaded', function() {
       card.addEventListener('click', function() { openLightbox(idx); });
       grid.appendChild(card);
     });
+     var images = grid.querySelectorAll('img');
+var total = images.length;
+var loaded = 0;
+if (total === 0) { grid.classList.add('loaded'); return; }
+images.forEach(function(img) {
+  if (img.complete) {
+    loaded++;
+    if (loaded === total) grid.classList.add('loaded');
+  } else {
+    img.addEventListener('load', function() {
+      loaded++;
+      if (loaded === total) grid.classList.add('loaded');
+    });
+    img.addEventListener('error', function() {
+      loaded++;
+      if (loaded === total) grid.classList.add('loaded');
+    });
+  }
+});
   }
 
   // ── FILTER CLICK HANDLER ──
