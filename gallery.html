@@ -833,12 +833,19 @@ document.addEventListener('DOMContentLoaded', function() {
   var visibleWorks = [];
 
   function buildCards(filter) {
+    // Reset grid and remove any existing loader
     grid.innerHTML = '';
+    grid.classList.remove('loaded');
+    var existingLoader = document.getElementById('gallery-loader');
+    if (existingLoader) existingLoader.remove();
+
+    // Show loading message
     var loader = document.createElement('div');
     loader.className = 'gallery-loading';
     loader.id = 'gallery-loader';
     loader.textContent = 'Loading images';
     grid.parentNode.insertBefore(loader, grid);
+
     visibleWorks = GALLERY_WORKS.filter(function(w) {
       return filter === 'all' || w.category === filter;
     });
@@ -848,6 +855,8 @@ document.addEventListener('DOMContentLoaded', function() {
       empty.className = 'gallery-empty';
       empty.textContent = 'No works in this category yet.';
       grid.appendChild(empty);
+      loader.remove();
+      grid.classList.add('loaded');
       return;
     }
 
@@ -878,33 +887,35 @@ document.addEventListener('DOMContentLoaded', function() {
       card.addEventListener('click', function() { openLightbox(idx); });
       grid.appendChild(card);
     });
-     var images = grid.querySelectorAll('img');
-var total = images.length;
-var loaded = 0;
-if (total === 0) { var l = document.getElementById('gallery-loader');
-      if (l) l.remove();
-      grid.classList.add('loaded'); return; }
-images.forEach(function(img) {
-  if (img.complete) {
-    loaded++;
-    if (loaded === total) var l = document.getElementById('gallery-loader');
-      if (l) l.remove();
-      grid.classList.add('loaded');
-  } else {
-    img.addEventListener('load', function() {
+
+    // Wait for all images then fade in
+    var images = grid.querySelectorAll('img');
+    var total = images.length;
+    var loaded = 0;
+
+    function onImageSettled() {
       loaded++;
-      if (loaded === total) var l = document.getElementById('gallery-loader');
-      if (l) l.remove();
+      if (loaded === total) {
+        var l = document.getElementById('gallery-loader');
+        if (l) l.remove();
+        grid.classList.add('loaded');
+      }
+    }
+
+    if (total === 0) {
+      loader.remove();
       grid.classList.add('loaded');
+      return;
+    }
+
+    images.forEach(function(img) {
+      if (img.complete) {
+        onImageSettled();
+      } else {
+        img.addEventListener('load', onImageSettled);
+        img.addEventListener('error', onImageSettled);
+      }
     });
-    img.addEventListener('error', function() {
-      loaded++;
-      if (loaded === total) var l = document.getElementById('gallery-loader');
-      if (l) l.remove();
-      grid.classList.add('loaded');
-    });
-  }
-});
   }
 
   // ── FILTER CLICK HANDLER ──
