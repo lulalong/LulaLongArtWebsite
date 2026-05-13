@@ -253,13 +253,12 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.8); }
   cursor: zoom-in;
   background: var(--charcoal);
   border: 1px solid var(--warm-mid);
-  transition: border-color 0.35s, transform 0.35s;
+  transition: border-color 0.35s;
   display: inline-block;
   width: 100%;
 }
 .gallery-card:hover {
   border-color: var(--gold);
-  transform: translateY(-3px);
 }
 
 /* Image — natural height, no padding trick needed for masonry */
@@ -279,7 +278,7 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.8); }
   transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 
-.gallery-card:hover /* Label overlay */
+/* Label overlay */
 .gallery-card-label {
   position: absolute;
   bottom: 0; left: 0; right: 0;
