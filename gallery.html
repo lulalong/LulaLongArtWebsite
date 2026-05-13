@@ -524,6 +524,20 @@ footer {
   .gallery-grid { columns: 1; }
 }
 
+
+.gallery-loading {
+  text-align: center;
+  padding: 80px 0;
+  font-size: 0.84rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
 </style>
 </head>
 <body>
@@ -820,6 +834,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function buildCards(filter) {
     grid.innerHTML = '';
+    var loader = document.createElement('div');
+    loader.className = 'gallery-loading';
+    loader.id = 'gallery-loader';
+    loader.textContent = 'Loading images';
+    grid.parentNode.insertBefore(loader, grid);
     visibleWorks = GALLERY_WORKS.filter(function(w) {
       return filter === 'all' || w.category === filter;
     });
@@ -862,19 +881,27 @@ document.addEventListener('DOMContentLoaded', function() {
      var images = grid.querySelectorAll('img');
 var total = images.length;
 var loaded = 0;
-if (total === 0) { grid.classList.add('loaded'); return; }
+if (total === 0) { var l = document.getElementById('gallery-loader');
+      if (l) l.remove();
+      grid.classList.add('loaded'); return; }
 images.forEach(function(img) {
   if (img.complete) {
     loaded++;
-    if (loaded === total) grid.classList.add('loaded');
+    if (loaded === total) var l = document.getElementById('gallery-loader');
+      if (l) l.remove();
+      grid.classList.add('loaded');
   } else {
     img.addEventListener('load', function() {
       loaded++;
-      if (loaded === total) grid.classList.add('loaded');
+      if (loaded === total) var l = document.getElementById('gallery-loader');
+      if (l) l.remove();
+      grid.classList.add('loaded');
     });
     img.addEventListener('error', function() {
       loaded++;
-      if (loaded === total) grid.classList.add('loaded');
+      if (loaded === total) var l = document.getElementById('gallery-loader');
+      if (l) l.remove();
+      grid.classList.add('loaded');
     });
   }
 });
