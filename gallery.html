@@ -14,10 +14,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
 
-/* ============================================================
-   EDIT YOUR ARTWORK HERE — see the GALLERY_WORKS array below
-   in the <script> section at the bottom of this file.
-   ============================================================ */
 
 :root {
   --black: #0a0807;
@@ -622,10 +618,10 @@ footer {
 
 <script>
 /* ============================================================
-   GALLERY WORKS — EDIT THIS ARRAY TO MAINTAIN YOUR GALLERY
+   GALLERY WORKS
    ============================================================
    Each artwork is one object. Fields:
-     src       — path to image file, e.g. "images/mypiece.jpg"
+     src       — path to image file
      title     — artwork title
      medium    — materials, e.g. "Coloured pencil · A3 Fabriano Black Black"
      year      — year created
@@ -634,10 +630,6 @@ footer {
      narrative — optional sentence about the piece (or "" to leave blank)
      aspect    — optional: "portrait" (tall), "landscape" (wide),
                  or omit for square. Controls the card shape.
-
-   TO ADD A PIECE:    paste a new { } block into the array
-   TO REMOVE A PIECE: delete its { } block
-   TO EDIT:           change the text inside the quotes
    ============================================================ */
 
 var GALLERY_WORKS = [
@@ -668,6 +660,15 @@ var GALLERY_WORKS = [
     narrative: "King of melody, frontman of The Strokes and The Voidz.",
     aspect: "portrait"
   },
+  {
+    src: "images/Margot.jpg",
+    title: "Margot",
+    medium: "Coloured pencil & pan pastel · Pastelmat",
+    year: "2025",
+    category: "Animals",
+    narrative: "Our gorgeous old girl, this piece has pride of place on our Daughter's bedroom wall.",
+    aspect: "portrait"
+  },
    {
     src: "images/Damon.jpg",
     title: "Damon Albarn",
@@ -675,6 +676,33 @@ var GALLERY_WORKS = [
     year: "2025",
     category: "Music",
     narrative: "Prolific musical genius of Blur and Gorillaz fame.",
+    aspect: "portrait"
+  },
+  {
+    src: "images/Dad.jpg",
+    title: "Nev",
+    medium: "Coloured pencil · Pastelmat",
+    year: "2024",
+    category: "Portraits",
+    narrative: "Drawn following the loss of my lovely Dad. Winner of the Lee Baglin Memorial Trophy for General Excellence in Drawing, Guernsey Eisteddfod 2025.",
+    aspect: "portrait"
+  },
+  {
+    src: "images/Dimebag.JPG",
+    title: "Dimebag Darrell",
+    medium: "Pan pastel and coloured pencil · Canson Mi Teintes",
+    year: "2026",
+    category: "Music",
+    narrative: "Legendary Pantera guitarist.",
+    aspect: "portrait"
+  },
+  {
+    src: "images/JoeTalbot.jpg",
+    title: "Joe Talbot",
+    medium: "Luminance coloured pencil · Canson black drawing paper",
+    year: "2024",
+    category: "Music",
+    narrative: "Inspired by an IDLES festival performance. Joe's emotional vocals seem to make him whole.",
     aspect: "portrait"
   },
    {
@@ -686,14 +714,14 @@ var GALLERY_WORKS = [
     narrative: "True guitar hero of Blur and The Waeve.",
     aspect: "portrait"
   },
-   {
-    src: "images/Dick Salisbury.jpg",
-    title: "Dick",
-    medium: "Coloured pencil · Canson Mi Teintes",
+  {
+    src: "images/MilliePoppyBear.jpg",
+    title: "Millie, Poppy & Bear",
+    medium: "Coloured pencil over pan pastel · Pastelmat",
     year: "2026",
-    category: "Portraits",
-    narrative: "Memorial piece completed for a childhood friend.",
-    aspect: "portrait"
+    category: "Animals",
+    narrative: "Memorial portrait compiled from separate photographs of these beloved dogs.",
+    aspect: "landscape"
   },
   {
     src: "images/Resonance.jpg",
@@ -702,6 +730,15 @@ var GALLERY_WORKS = [
     year: "2025",
     category: "Music",
     narrative: "Frontman and friend Billy performs in local venue, The Pit. Exhibited at the Guernsey Arts Open 2025 in the George Crossan Gallery.",
+    aspect: "portrait"
+  },
+  {
+    src: "images/Toby.jpg",
+    title: "Toby",
+    medium: "Pan pastel and pastel pencils · Pastelmat",
+    year: "2025",
+    category: "Animals",
+    narrative: "Pet portrait memorial for a dear friend.",
     aspect: "portrait"
   },
   {
@@ -741,42 +778,6 @@ var GALLERY_WORKS = [
     aspect: "portrait"
   },
   {
-    src: "images/Margot.jpg",
-    title: "Margot",
-    medium: "Coloured pencil & pan pastel · Pastelmat",
-    year: "2025",
-    category: "Animals",
-    narrative: "Our gorgeous old girl, this piece has pride of place on our Daughter's bedroom wall.",
-    aspect: "portrait"
-  },
-  {
-    src: "images/JoeTalbot.jpg",
-    title: "Joe Talbot",
-    medium: "Luminance coloured pencil · Canson black drawing paper",
-    year: "2024",
-    category: "Music",
-    narrative: "Inspired by an IDLES festival performance. Joe's emotional vocals seem to make him whole.",
-    aspect: "portrait"
-  },
-  {
-    src: "images/Dad.jpg",
-    title: "Nev",
-    medium: "Coloured pencil · Pastelmat",
-    year: "2024",
-    category: "Portraits",
-    narrative: "Drawn following the loss of my lovely Dad. Winner of the Lee Baglin Memorial Trophy for General Excellence in Drawing, Guernsey Eisteddfod 2025.",
-    aspect: "portrait"
-  },
-  {
-    src: "images/Toby.jpg",
-    title: "Toby",
-    medium: "Pan pastel and pastel pencils · Pastelmat",
-    year: "2025",
-    category: "Animals",
-    narrative: "Pet portrait memorial for a dear friend.",
-    aspect: "portrait"
-  },
-  {
     src: "images/Chino.jpg",
     title: "Chino Moreno",
     medium: "Coloured pencil & pan pastel · Fabriano Black Black",
@@ -785,29 +786,19 @@ var GALLERY_WORKS = [
     narrative: "Powerful Deftones vocalist shines on stage.",
     aspect: "portrait"
   },
-  {
-    src: "images/MilliePoppyBear.jpg",
-    title: "Millie, Poppy & Bear",
-    medium: "Coloured pencil over pan pastel · Pastelmat",
+   {
+    src: "images/Dick Salisbury.jpg",
+    title: "Dick",
+    medium: "Coloured pencil · Canson Mi Teintes",
     year: "2026",
-    category: "Animals",
-    narrative: "Memorial portrait compiled from separate photographs of these beloved dogs.",
-    aspect: "landscape"
-  },
-  {
-    src: "images/Dimebag.JPG",
-    title: "Dimebag Darrell",
-    medium: "Pan pastel and coloured pencil · Canson Mi Teintes",
-    year: "2026",
-    category: "Music",
-    narrative: "Legendary Pantera guitarist.",
+    category: "Portraits",
+    narrative: "Memorial piece completed for a childhood friend.",
     aspect: "portrait"
   }
-  /* ADD NEW PIECES ABOVE THIS LINE — don't forget the comma after the } above */
 ];
 
 /* ============================================================
-   EVERYTHING BELOW THIS LINE IS LAYOUT CODE — NO NEED TO EDIT
+   LAYOUT CODE
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
