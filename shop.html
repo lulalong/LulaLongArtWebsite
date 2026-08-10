@@ -207,7 +207,7 @@
   <div class="gold-rule"><span>Shop</span></div>
   <h1>Fine art <em>prints.</em></h1>
   <p>Each print is produced on premium acid-free paper using HP Indigo pigment-based inks, then hand-signed by me before it ships.</p>
-  <p>Handled with care and sent directly to you.</p>
+  <p>Handled with care and sent directly to you. <strong>At present I'm only able to post prints to UK & Channel Islands addresses</strong>, due to new customs rules affecting parcels sent from Guernsey.</p>
 </div>
 
 <section class="shop">
@@ -219,11 +219,11 @@
     <div class="info-block">
       <h3>Shipping</h3>
       <ul>
-        <li>Postage is included in the price</li>
-        <li>UK and international delivery available</li>
+        <li>UK & Channel Islands addresses only, for now</li>
         <li>Every print sent tracked</li>
         <li>Sent flat in a rigid, do-not-bend mailer</li>
       </ul>
+      <p style="margin-top:14px;">Due to new customs and export rules affecting parcels sent from Guernsey, I'm currently unable to post prints outside the UK & Channel Islands. I hope to reopen international shipping in future, if you'd like to be notified, <a href="mailto:contact@lulalongart.com" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);">drop me an email</a>.</p>
       <p style="margin-top:14px;">Ordering more than one print? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);">Drop me an email</a> before you buy and I'll sort your postage together.</p>
     </div>
     <div class="info-block">
@@ -237,8 +237,8 @@
     </div>
     <div class="info-block">
       <h3>Good to know</h3>
-      <p>Please allow a few days for dispatch. The buyer is responsible for any import duties or taxes that apply in their country. All sales are final.</p>
-      <p style="margin-top:14px;">As I'm based in Guernsey, UK orders may occasionally be subject to a small import VAT charge collected by the courier on delivery. This is outside my control and separate from the price you pay me.</p>
+      <p>Please allow a few days for dispatch. All sales are final.</p>
+      <p style="margin-top:14px;">As I'm based in Guernsey, orders may occasionally be subject to a small import VAT charge collected by the courier on delivery. This is outside my control and separate from the price you pay me.</p>
       <p style="margin-top:14px;">The preview images on this page are intentionally low resolution to protect against copying. Your printed piece will be considerably crisper and richer in detail.</p>
     </div>
   </div>
@@ -251,17 +251,14 @@
     <h2 id="modal-title"></h2>
     <p class="modal-meta" id="modal-meta"></p>
 
-    <p class="field-label" style="margin-bottom:12px;">Choose your delivery region, postage is included in the price.</p>
     <div class="order-summary" style="margin-bottom:24px;">
-      <div class="summary-row"><span>United Kingdom</span><span id="summary-uk">&mdash;</span></div>
-      <div class="summary-row"><span>Europe &amp; rest of world</span><span id="summary-intl">&mdash;</span></div>
+      <div class="summary-row"><span>UK & Channel Islands delivery</span><span id="summary-uk">&mdash;</span></div>
     </div>
 
-    <p class="modal-note"><strong>Please note:</strong> Each print is sent tracked. The buyer is responsible for any import duties or taxes in their country. As I'm based in Guernsey, UK orders may occasionally be subject to a small import VAT charge collected by the courier on delivery.</p>
+    <p class="modal-note"><strong>Please note:</strong> <strong>At present I'm only able to post to UK & Channel Islands addresses</strong>, due to new customs rules affecting parcels sent from Guernsey. Each print is sent tracked. The buyer is responsible for any import duties or taxes that may apply.</p>
 
     <div class="payment-btns" style="display:flex; flex-direction:column; gap:12px;">
-      <button class="pay-stripe" id="pay-uk-btn">Buy &middot; UK delivery</button>
-      <button class="pay-stripe" id="pay-intl-btn" style="background:transparent; border:1px solid var(--gold); color:var(--gold);">Buy &middot; International delivery</button>
+      <button class="pay-stripe" id="pay-uk-btn">Buy &middot; UK & Channel Islands delivery</button>
     </div>
 
     <p class="modal-disclaimer">You'll be taken to PayPal's secure checkout to pay by card, Apple&nbsp;Pay, Google&nbsp;Pay or PayPal. PayPal will collect your name and delivery address directly. See our <a href="privacy.html" style="color:var(--gold);">Privacy Notice</a> for how this is used. Prints are hand-signed and dispatched promptly. Ordering more than one? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);">Email me</a> to combine postage.</p>
@@ -307,8 +304,7 @@ const PRINTS = [
     orientation: 'portrait',
     soldOut: false,
     runOf: 30, remaining: 30,
-    priceUK: 35,   paypalUK: 'https://www.paypal.com/ncp/payment/RZJ73WXUJ8M2Y',
-    priceIntl: 45, paypalIntl: 'https://www.paypal.com/ncp/payment/G4AHFKUAF9T7L'
+    priceUK: 35, paypalUK: 'https://www.paypal.com/ncp/payment/RZJ73WXUJ8M2Y'
   },
   {
     id: 'trent-reznor',
@@ -319,8 +315,7 @@ const PRINTS = [
     orientation: 'portrait',
     soldOut: false,
     runOf: 10, remaining: 10,
-    priceUK: 30,   paypalUK: 'https://www.paypal.com/ncp/payment/953M4YVNK66HL',
-    priceIntl: 40, paypalIntl: 'https://www.paypal.com/ncp/payment/9FTGEV38UXRKN'
+    priceUK: 30, paypalUK: 'https://www.paypal.com/ncp/payment/953M4YVNK66HL'
   },
   {
     id: 'dimebag-darrell',
@@ -331,8 +326,7 @@ const PRINTS = [
     orientation: 'landscape',
     soldOut: false,
     runOf: 30, remaining: 29,
-    priceUK: 30,   paypalUK: 'https://www.paypal.com/ncp/payment/YSDWS7JCP5WHL',
-    priceIntl: 40, paypalIntl: 'https://www.paypal.com/ncp/payment/LQWFMNDVCPPSL'
+    priceUK: 30, paypalUK: 'https://www.paypal.com/ncp/payment/YSDWS7JCP5WHL'
   }
 ];
 
@@ -396,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
           '<p class="print-subtitle">' + print.subtitle + '</p>' +
           sizeBlock +
           '<div class="price-row">' +
-            '<span class="price">' + (available ? 'From £' + print.priceUK : '—') + '</span>' +
+            '<span class="price">' + (available ? '£' + (print.priceUK - 5) + ' <span style="font-size:0.55em;color:var(--muted);">(+£5 p&amp;p)</span>' : '—') + '</span>' +
             stockHtml +
           '</div>' +
           '<button class="buy-btn" data-print="' + print.id + '" ' + (available ? '' : 'disabled') + '>' +
@@ -432,10 +426,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('modal-title').textContent = print.title;
     document.getElementById('modal-meta').textContent =
       'A4 · ' + print.subtitle + ' · Hand-signed';
-    document.getElementById('summary-uk').textContent = '£' + print.priceUK;
-    document.getElementById('summary-intl').textContent = '£' + print.priceIntl;
-    document.getElementById('pay-uk-btn').innerHTML = 'Buy &middot; UK delivery &mdash; £' + print.priceUK;
-    document.getElementById('pay-intl-btn').innerHTML = 'Buy &middot; International &mdash; £' + print.priceIntl;
+    document.getElementById('summary-uk').textContent = '£' + (print.priceUK - 5) + ' + £5 p&p';
+    document.getElementById('pay-uk-btn').innerHTML = 'Buy &middot; £' + print.priceUK;
     document.getElementById('modal-overlay').classList.add('active');
     document.body.style.overflow = 'hidden';
     document.getElementById('modal-close').focus();
@@ -451,16 +443,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.target === document.getElementById('modal-overlay')) closeModal();
   });
 
-  function buyOrEmail(print, region) {
-    const price = region === 'UK' ? print.priceUK : print.priceIntl;
-    const link  = region === 'UK' ? print.paypalUK : print.paypalIntl;
-    if (link) {
-      window.open(link, '_blank', 'noopener');
+  function buyOrEmail(print) {
+    if (print.paypalUK) {
+      window.open(print.paypalUK, '_blank', 'noopener');
       closeModal();
     } else {
-      const subject = 'Print order: ' + print.title + ' (A4, ' + region + ')';
+      const subject = 'Print order: ' + print.title + ' (A4, UK & Channel Islands)';
       const body = "Hi Lyndsey,\n\nI'd like to order " + print.title +
-        " (A4, " + region + " — £" + price + ").\n\nMy delivery address:\n[please add your full postal address]\n\nThank you!";
+        " (A4, UK & Channel Islands — £" + (print.priceUK - 5) + " + £5 p&p).\n\nMy delivery address:\n[please add your full postal address]\n\nThank you!";
       window.location.href = 'mailto:' + EMAIL +
         '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     }
@@ -468,11 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('pay-uk-btn').addEventListener('click', function() {
     if (!currentPrintId) return;
-    buyOrEmail(PRINTS.find(function(p){ return p.id === currentPrintId; }), 'UK');
-  });
-  document.getElementById('pay-intl-btn').addEventListener('click', function() {
-    if (!currentPrintId) return;
-    buyOrEmail(PRINTS.find(function(p){ return p.id === currentPrintId; }), 'INTL');
+    buyOrEmail(PRINTS.find(function(p){ return p.id === currentPrintId; }));
   });
 
   const lightbox = document.getElementById('lightbox');
