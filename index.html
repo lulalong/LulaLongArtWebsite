@@ -84,16 +84,16 @@
   .portfolio-item:nth-child(3) { grid-column: span 3; }
   .portfolio-item:nth-child(4) { grid-column: span 4; }
   .portfolio-item:nth-child(5) { grid-column: span 3; }
-  .portfolio-item:nth-child(6) { grid-column: span 5; }
-  .portfolio-item:nth-child(7) { grid-column: span 7; }
+  .portfolio-item:nth-child(6),
+  .portfolio-item:nth-child(7),
   .portfolio-item:nth-child(8) { grid-column: span 4; }
   .portfolio-item:nth-child(1) .portfolio-item-inner { padding-bottom: 108%; }
   .portfolio-item:nth-child(2) .portfolio-item-inner,
   .portfolio-item:nth-child(4) .portfolio-item-inner { padding-bottom: 82%; }
   .portfolio-item:nth-child(3) .portfolio-item-inner,
   .portfolio-item:nth-child(5) .portfolio-item-inner { padding-bottom: 100%; }
-  .portfolio-item:nth-child(6) .portfolio-item-inner { padding-bottom: 72%; }
-  .portfolio-item:nth-child(7) .portfolio-item-inner { padding-bottom: 55%; }
+  .portfolio-item:nth-child(6) .portfolio-item-inner,
+  .portfolio-item:nth-child(7) .portfolio-item-inner,
   .portfolio-item:nth-child(8) .portfolio-item-inner { padding-bottom: 90%; }
   .artwork-placeholder { position: absolute; inset: 0; background-size: cover; background-position: center center; transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94); transform-origin: center center; }
   .portfolio-item:hover .artwork-placeholder { transform: scale(1.02); }
@@ -121,7 +121,7 @@
   .contact-info p { color: var(--pale); font-size: 1rem; line-height: 1.8; margin-bottom: 36px; }
   .contact-detail { display: flex; flex-direction: column; gap: 14px; }
   .contact-detail a { font-size: 0.90rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 12px; cursor: pointer; }
-   .contact-detail a::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 6px 2px rgba(196,154,90,0.5); flex-shrink: 0; }
+  .contact-detail a::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 6px 2px rgba(196,154,90,0.5); flex-shrink: 0; }
   .contact-detail a:hover { color: var(--gold); }
 
   footer { background: var(--deep); padding: 36px 56px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-top: 1px solid var(--warm-mid); }
@@ -154,8 +154,8 @@
     .hero-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .btn-primary, .btn-ghost { padding: 12px 16px; font-size: 0.72rem; text-align: center; width: 100%; }
     .portfolio-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-.portfolio-item { grid-column: span 1 !important; grid-row: span 1 !important; }
-.portfolio-item .portfolio-item-inner { padding-bottom: 100% !important; }
+    .portfolio-item { grid-column: span 1 !important; grid-row: span 1 !important; }
+    .portfolio-item .portfolio-item-inner { padding-bottom: 100% !important; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .about-img-placeholder { padding-bottom: 75%; }
     .about-img-placeholder::before { display: none; }
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var fig = document.getElementById('footer-instagram');
   if (fig) fig.addEventListener('click', function() { window.open('https://instagram.com/lulalongart','_blank'); });
 
-  // ── SELECTED WORKSIMAGES ──
+  // ── SELECTED WORKS IMAGES ──
   var IMGS = [
     "images/Trent.jpg",
     "images/Margot.jpg",
@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var items = document.querySelectorAll('.portfolio-item');
   items.forEach(function(item, idx) {
     var ph = item.querySelector('.artwork-placeholder');
-    if (ph && IMGS[idx]) ph.style.backgroundImage = 'url(' + IMGS[idx] + ')';
+    if (ph && IMGS[idx]) ph.style.backgroundImage = 'url("' + IMGS[idx] + '")';
   });
 
   // Lightbox
